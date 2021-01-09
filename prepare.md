@@ -81,3 +81,12 @@ $ pacman -Qs podman
 ```
 # dnf distro-sync
 ```
+
+### 1.4 用户创建
+
+创建一个普通用户，用于后面的测试：
+
+```
+# useradd -m -g users -G wheel -s /bin/bash bobby285271
+# passwd bobby285271
+```
