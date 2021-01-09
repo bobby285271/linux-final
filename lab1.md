@@ -1,42 +1,25 @@
-## 1. 实验一
+## 2 实验一
 
-好啦好啦切入正题不然就没分了，下面的命令在服务端执行，把包给装上了先。
+### 2.1 vsftpd 安装
 
-```
-# dnf search vsftpd    # 假装搜索一下这个包（?）
-# dnf install vsftpd   # 这就装上
-```
-
-悲剧 +1...
+下面的命令在服务端执行，把包给装上了先。
 
 ```
-# systemctl enable vsftpd --now
-System has not been booted with systemd as init system (PID 1). Can't operate.
-Failed to connect to bus: Host is down
+# dnf search vsftpd
+# dnf install vsftpd
 ```
 
-**干！创建实例的时候忘记加 `--privileged` 了，用个鬼 `systemctl`。假装我刚才什么都没做好吧，重来重来（捂脸）。**
+### 2.2 vsftpd 启动
 
-一定没有下次了.jpg
-
-```
-# podman run -id --privileged --name server-rongjialin --network final-rongjialin --ip 192.168.4.5 centos /usr/sbin/init
-# podman exec -it server-rongjialin bash
-```
-
-整一个命令测试一下，不过加了之后还是好使的：
-
-```
-# systemctl list-units
-```
-
-好了，现在把上面的步骤重新走了一遍，就不贴图了。现在启动相应的服务：
+启动相应的服务：
 
 ```
 # systemctl enable vsftpd --now
 ```
 
-测试就使用 `ftp` 吧，在客户端安装 `ftp`：
+### 2.3 ftp 安装
+
+在客户端安装 `ftp`：
 
 ```
 # dnf install ftp
@@ -49,7 +32,7 @@ Failed to connect to bus: Host is down
 # passwd bobby285271
 ```
 
-### 1.1 任务一
+### 2.4 匿名访问配置与测试
 
 由于要允许匿名访问，改一下配置：
 
@@ -83,7 +66,7 @@ $ ftp 192.168.4.5
 > ls
 ```
 
-### 1.2 任务二
+### 2.5 用户登录测试
 
 在服务端家目录创建一个 `lisi` 文件夹，然后创建一个 `lisi.txt` 文件：
 
@@ -103,7 +86,7 @@ $ ftp 192.168.4.5
 > ls
 ```
 
-### 1.3 任务三
+### 2.6 wget 获取文件测试
 
 首先安装 `wget` ：
 
@@ -124,3 +107,29 @@ $ cat anon.txt
 $ wget --ftp-user=bobby285271 --ftp-password=${password} ftp://192.168.4.5/lisi/lisi.txt
 $ cat lisi.txt
 ```
+
+### 2.7 ftp 上传与下载测试
+
+第二天发现自己忘记做这一部分了，赶紧补一下。8 号做后面实验的时候用 `wget` 下过一个 `index.html`，正好用上。
+
+首先是使用 `bobby285271` 用户登录 ftp，测试文件上传：
+
+```
+# ftp 192.168.4.5
+> put index.html
+```
+
+删除了本地的测试文件 `index.html`：
+
+```
+# rm -f index.html
+```
+
+接下来使用 `bobby285271` 用户登录 ftp，测试文件下载。
+
+```
+# ftp 192.168.4.5
+> get index.html
+```
+
+接下来使用匿名用户登录 ftp，测试上传与测试。
