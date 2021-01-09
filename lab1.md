@@ -25,13 +25,6 @@
 # dnf install ftp
 ```
 
-好像用 root 进行测试也不太好，各创建一个普通用户吧：
-
-```
-# useradd -m -g users -G wheel -s /bin/bash bobby285271
-# passwd bobby285271
-```
-
 ### 2.4 匿名访问配置与测试
 
 由于要允许匿名访问，改一下配置：
@@ -101,7 +94,7 @@ $ wget ftp://192.168.4.5/pub/anon.txt
 $ cat anon.txt
 ```
 
-使用用户 `bobby285271` 下载 `lisi.txt`，这里就不直接贴出密码了，前面设了变量，然后 `clear` 清了屏：
+使用用户 `bobby285271` 下载 `lisi.txt`，这里就不直接贴出密码了，前面设了变量：
 
 ```
 $ wget --ftp-user=bobby285271 --ftp-password=${password} ftp://192.168.4.5/lisi/lisi.txt
@@ -132,4 +125,4 @@ $ cat lisi.txt
 > get index.html
 ```
 
-接下来使用匿名用户登录 ftp，测试上传与测试。
+接下来使用匿名用户登录 ftp，测试上传与测试（过程略）。
