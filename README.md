@@ -14,3 +14,7 @@
 - [实验三：Web 站点的构建及访问](./lab3.md)
 - [实验四：httpd 配置与 PHP 环境配置](./lab4.md)
 - [实验五：httpd 虚拟主机的配置](./lab5.md)
+
+---
+
+(UPD) Grade point of this course: 5.0 / 5.0
