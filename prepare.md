@@ -22,7 +22,7 @@ $ pacman -Qs podman
 # podman network create --subnet=192.168.4.0/24 final-rongjialin
 ```
 
-创建两个实例，`rongjialin-client`  为客户端，`rongjialin-server` 为服务端，这里指定了 IP：
+创建两个实例，`client-rongjialin`  为客户端，`server-rongjialin` 为服务端，这里指定了 IP：
 
 ```
 # podman run -it --name client-rongjialin --network final-rongjialin --ip 192.168.4.205 centos /bin/bash
