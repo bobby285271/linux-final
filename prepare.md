@@ -25,8 +25,8 @@ $ pacman -Qs podman
 创建两个实例，`client-rongjialin`  为客户端，`server-rongjialin` 为服务端，这里指定了 IP：
 
 ```
-# podman run -it --name client-rongjialin --network final-rongjialin --ip 192.168.4.205 centos /bin/bash
-# podman run -it --name server-rongjialin --network final-rongjialin --ip 192.168.4.5 centos /bin/bash
+# podman run -it --privileged --name client-rongjialin --network final-rongjialin --ip 192.168.4.205 centos /usr/sbin/init
+# podman run -it --privileged --name server-rongjialin --network final-rongjialin --ip 192.168.4.5 centos /usr/sbin/init
 ```
 
 验证容器是否创建成功：
